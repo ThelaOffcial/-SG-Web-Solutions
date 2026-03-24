@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SG Web Solution | Futuristic Web Design & Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --accent: #00d4ff;
+            --accent-dark: #0099cc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(0, 212, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body.dark {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #14141a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0c0;
+            --card-bg: rgba(20, 20, 30, 0.9);
+            --glass-border: rgba(0, 212, 255, 0.3);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .animated-logo {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            animation: rotateLogo 3s infinite ease-in-out;
+        }
+
+        @keyframes rotateLogo {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(360deg) scale(1.1); }
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section - UPDATED with futuristic animated logo */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5% 80px;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            position: relative;
+        }
+
+        /* Futuristic Animated Logo Container */
+        .futuristic-logo {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animated rotating ring */
+        .rotating-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--accent);
+            border-right-color: #667eea;
+            border-bottom-color: var(--accent);
+            border-left-color: #667eea;
+            animation: spin 3s linear infinite;
+        }
+
+        .rotating-ring::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #ff6b6b;
+            border-left-color: #4ecdc4;
+            animation: spin 4s linear infinite reverse;
+        }
+
+        .rotating-ring::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            border-right-color: #feca57;
+            border-bottom-color: #ff9ff3;
+            animation: spin 5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Inner square with glow */
+        .logo-square {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(102, 126, 234, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            animation: pulse 2s ease-in-out infinite, float 3s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+                border-color: rgba(0, 212, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+                border-color: rgba(0, 212, 255, 1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .logo-square i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Glowing particles around logo */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: particleFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                opacity: 0;
+                transform: translate(0, 0);
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), #667eea, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        /* Professional Info Bar - UPDATED */
+        .professional-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding: 1rem;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            font-family: 'Poppins', 'Segoe UI', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+            border-color: var(--accent);
+        }
+
+        .info-item i {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .info-item .info-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-family: 'Poppins', monospace;
+        }
+
+        .info-item .info-value {
+            font-weight: 500;
+            font-size: 0.95rem;
+            font-family: 'Poppins', 'Segoe UI', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Service Cards */
+        .services-grid, .prices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card, .price-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before, .price-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            transition: top 0.5s;
+            z-index: -1;
+        }
+
+        .service-card:hover, .price-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .service-card:hover::before, .price-card:hover::before {
+            top: 0;
+        }
+
+        .service-card i, .price-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            animation: fadeInUp 0.6s;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-name {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .delete-review {
+            background: rgba(255, 68, 68, 0.2);
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .delete-review:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .review-text {
+            margin: 1rem 0;
+            color: var(--text-secondary);
+        }
+
+        .review-rating {
+            color: #ffc107;
+        }
+
+        /* Comment Form */
+        .comment-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .comment-form input, .comment-form textarea, .comment-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .submit-review {
+            background: linear-gradient(135deg, var(--accent), #667eea);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        /* Info Bars */
+        .info-bars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-bar {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s;
+        }
+
+        .info-bar:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 5%;
+            }
+            
+            .contact-btn span {
+                display: none;
+            }
+            
+            .futuristic-logo {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .logo-square {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .logo-square i {
+                font-size: 2.5rem;
+            }
+            
+            .professional-info {
+                gap: 1rem;
+            }
+            
+            .info-item {
+                padding: 8px 16px;
+            }
+            
+            .info-item .info-label {
+                font-size: 0.7rem;
+            }
+            
+            .info-item .info-value {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .order-btn, .modal-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="animated-logo">
+                <i class="fas fa-code" style="font-size: 2rem; color: var(--accent);"></i>
+            </div>
+            <span class="logo-text">SG Web Solution</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#prices">Prices</a></li>
+            <li><a href="#reviews">Ratings</a></li>
+            <li><a href="#details">Details</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="contact-btn" id="contactBtn">
+                <i class="fab fa-whatsapp"></i>
+                <span>Click to Contact</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section - UPDATED with futuristic animated logo and professional info -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <!-- Futuristic Animated Logo Container -->
+                <div class="futuristic-logo">
+                    <div class="rotating-ring"></div>
+                    <div class="logo-square">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <!-- Floating particles -->
+                    <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+                    <div class="particle" style="top: 15%; right: 25%; animation-delay: 0.5s;"></div>
+                    <div class="particle" style="bottom: 20%; left: 15%; animation-delay: 1s;"></div>
+                    <div class="particle" style="bottom: 25%; right: 20%; animation-delay: 1.5s;"></div>
+                    <div class="particle" style="top: 40%; left: -5%; animation-delay: 0.8s;"></div>
+                    <div class="particle" style="top: 50%; right: -5%; animation-delay: 1.2s;"></div>
+                </div>
+                
+                <h1>SG Web Solution</h1>
+                <h2>To Place Your Order , Scroll Down </h2>
+                <br>
+                <p>Professional Web Design & Development in Sri Lanka | Futuristic Solutions for Modern Businesses</p>
+                <p>Professional websites at Affordable prices</p>
+                <!-- Professional Info Bar -->
+                <div class="professional-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="info-label">LOCATION</span>
+                        <span class="info-value">32, Mangala Mawatha , Panadura</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="far fa-clock"></i>
+                        <span class="info-label">HOURS</span>
+                        <span class="info-value">8:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid" id="servicesGrid">
+                <div class="service-card" data-service="Web Creating">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Web Creating</h3>
+                    <p>Professional website creation with modern technologies</p>
+                    <small>Click for details →</small>
+                </div>
+                <div class="service-card" data-service="Web Designing">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Web Designing</h3>
+                    <p>Stunning designs that capture your brand identity</p>
+                    <small>Click for details →</small>
+                </div>
+                <div class="service-card" data-service="Portfolio's">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Portfolio's</h3>
+                    <p>Showcase your work with elegant portfolio websites</p>
+                    <small>Click for details →</small>
+                </div>
+                <div class="service-card" data-service="Customized Orders">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Customized Orders</h3>
+                    <p>Tailored solutions for your unique requirements</p>
+                    <small>Click for details →</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prices Section -->
+        <section id="prices">
+            <h2 class="section-title">Pricing Plans</h2>
+            <div class="prices-grid" id="pricesGrid">
+                <div class="price-card" data-service="Web Creating" data-price="LKR 5000 Upwards">
+                    <i class="fas fa-globe"></i>
+                    <h3>Web Creating</h3>
+                    <p style="font-size: 1.5rem; color: var(--accent);">LKR 5000 ↑</p>
+                    <p>Complete website development</p>
+                    <small>Click to order →</small>
+                </div>
+                <div class="price-card" data-service="Web Designing" data-price="LKR 5000 Upwards">
+                    <i class="fas fa-palette"></i>
+                    <h3>Web Designing</h3>
+                    <p style="font-size: 1.5rem; color: var(--accent);">LKR 5000 ↑</p>
+                    <p>UI/UX design & prototyping</p>
+                    <small>Click to order →</small>
+                </div>
+                <div class="price-card" data-service="Portfolio's" data-price="LKR 3000 Upwards">
+                    <i class="fas fa-id-card"></i>
+                    <h3>Portfolio's</h3>
+                    <p style="font-size: 1.5rem; color: var(--accent);">LKR 4000 ↑</p>
+                    <p>Personal/professional portfolios</p>
+                    <small>Click to order →</small>
+                </div>
+                <div class="price-card" data-service="Customized Orders" data-price="Changes with Order">
+                    <i class="fas fa-star-of-life"></i>
+                    <h3>Customized Orders</h3>
+                    <p style="font-size: 1rem; color: var(--accent);">Custom Quote</p>
+                    <p>Tailored to your needs</p>
+                    <small>Click to order →</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews">
+            <h2 class="section-title">Customer Ratings & Reviews</h2>
+            <div class="reviews-grid" id="reviewsContainer"></div>
+            
+            <div class="comment-form">
+                <h3>Leave a Review</h3>
+                <input type="text" id="reviewerName" placeholder="Your Name" required>
+                <select id="reviewRating">
+                    <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ - Good</option>
+                    <option value="3">⭐⭐⭐ - Average</option>
+                    <option value="2">⭐⭐ - Poor</option>
+                    <option value="1">⭐ - Terrible</option>
+                </select>
+                <textarea id="reviewText" rows="3" placeholder="Your review..."></textarea>
+                <button class="submit-review" onclick="addReview()">Submit Review</button>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section id="details">
+            <h2 class="section-title">Business Details</h2>
+            <div class="info-bars">
+                <div class="info-bar">
+                    <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3>Address</h3>
+                    <p>32, Mangala Mawatha, Panadura</p>
+                </div>
+                <div class="info-bar">
+                    <i class="fas fa-clock" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Saturday<br>8:00 AM - 6:00 PM</p>
+                </div>
+                <div class="info-bar">
+                    <i class="fas fa-phone" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3>Contact</h3>
+                    <p>+94 70 386 2334</p>
+                </div>
+                <div class="info-bar">
+                    <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3>Experience</h3>
+                    <p>1+ Year of Excellence</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SG Web Solution. All Rights Reserved.</p>
+        <p>📍 32, Mangala Mawatha, Panadura | 📞 +94703862334 | ⏰ 8 AM - 6 PM</p>
+    </footer>
+
+    <!-- Modal for Service Details -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <p id="modalPrice"></p>
+            <div class="modal-buttons">
+                <button class="order-btn" id="modalOrderBtn">Order Now</button>
+                <button class="modal-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark/Light Mode
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const icon = themeToggle.querySelector('i');
+            if (body.classList.contains('dark')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // WhatsApp Contact Button
+        const contactBtn = document.getElementById('contactBtn');
+        contactBtn.addEventListener('click', () => {
+            const message = encodeURIComponent("Hello! I'm interested in your web design services. I'd like to discuss a project with you.");
+            window.open(`https://wa.me/94703862334?text=${message}`, '_blank');
+        });
+
+        // Service Details Modal
+        const modal = document.getElementById('serviceModal');
+        let currentService = '';
+
+        function showServiceDetails(service, price, isService = true) {
+            currentService = service;
+            document.getElementById('modalTitle').textContent = service;
+            
+            let description = '';
+            if (service === 'Web Creating') {
+                description = 'Professional website development with responsive design, SEO optimization, and modern technologies. Perfect for businesses looking to establish an online presence.';
+            } else if (service === 'Web Designing') {
+                description = 'Stunning UI/UX design services including wireframes, prototypes, and full design systems. We create beautiful, user-friendly interfaces.';
+            } else if (service === "Portfolio's") {
+                description = 'Elegant portfolio websites to showcase your work, skills, and achievements. Perfect for artists, photographers, and professionals.';
+            } else if (service === 'Customized Orders') {
+                description = 'Custom web solutions tailored to your specific needs. From e-commerce to booking systems, we build exactly what you need.';
+            }
+            
+            document.getElementById('modalDescription').textContent = description;
+            document.getElementById('modalPrice').textContent = `Price: ${price}`;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Service Card Click Handlers
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const service = card.getAttribute('data-service');
+                let price = '';
+                if (service === 'Web Creating') price = 'LKR 5000 Upwards';
+                else if (service === 'Web Designing') price = 'LKR 5000 Upwards';
+                else if (service === "Portfolio's") price = 'LKR 3000 Upwards';
+                else price = 'Changes with Order';
+                showServiceDetails(service, price, true);
+            });
+        });
+
+        document.querySelectorAll('.price-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const service = card.getAttribute('data-service');
+                const price = card.getAttribute('data-price');
+                showServiceDetails(service, price, false);
+            });
+        });
+
+        // Modal Order Button
+        document.getElementById('modalOrderBtn').addEventListener('click', () => {
+            const message = encodeURIComponent(`Hello! I'm interested in ordering "${currentService}". I'd like to discuss the details and get started.`);
+            window.open(`https://wa.me/94703862334?text=${message}`, '_blank');
+            closeModal();
+        });
+
+        // Reviews System with Local Storage
+        let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+        function saveReviews() {
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+        }
+
+        function getCurrentUser() {
+            let user = localStorage.getItem('reviewUser');
+            if (!user) {
+                user = 'User_' + Math.random().toString(36).substr(2, 8);
+                localStorage.setItem('reviewUser', user);
+            }
+            return user;
+        }
+
+        function addReview() {
+            const name = document.getElementById('reviewerName').value;
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            const text = document.getElementById('reviewText').value;
+            
+            if (!name || !text) {
+                alert('Please enter your name and review');
+                return;
+            }
+            
+            const currentUser = getCurrentUser();
+            const review = {
+                id: Date.now(),
+                name: name,
+                rating: rating,
+                text: text,
+                userId: currentUser,
+                date: new Date().toLocaleDateString()
+            };
+            
+            reviews.unshift(review);
+            saveReviews();
+            displayReviews();
+            
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewText').value = '';
+        }
+
+        function deleteReview(reviewId) {
+            const review = reviews.find(r => r.id === reviewId);
+            const currentUser = getCurrentUser();
+            
+            if (review && review.userId === currentUser) {
+                if (confirm('Are you sure you want to delete your review?')) {
+                    reviews = reviews.filter(r => r.id !== reviewId);
+                    saveReviews();
+                    displayReviews();
+                }
+            } else {
+                alert('You can only delete your own reviews!');
+            }
+        }
+
+        function displayReviews() {
+            const container = document.getElementById('reviewsContainer');
+            const currentUser = getCurrentUser();
+            
+            if (reviews.length === 0) {
+                container.innerHTML = '<p style="text-align: center;">No reviews yet. Be the first to leave a review!</p>';
+                return;
+            }
+            
+            container.innerHTML = reviews.map(review => `
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-name">${escapeHtml(review.name)}</span>
+                        ${review.userId === currentUser ? `<button class="delete-review" onclick="deleteReview(${review.id})"><i class="fas fa-trash"></i> Delete</button>` : ''}
+                    </div>
+                    <div class="review-rating">${'⭐'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                    <p class="review-text">${escapeHtml(review.text)}</p>
+                    <small style="color: var(--text-secondary);">${review.date}</small>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize reviews
+        displayReviews();
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .price-card, .info-bar, .review-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
